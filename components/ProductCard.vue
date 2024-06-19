@@ -1,6 +1,6 @@
 <template>
   <div class="card text-center">
-    <img class="thumb h-80 mx-auto" :src="product.image" :alt="product.title" />
+    <img class="thumb mx-auto" :src="product.image" :alt="product.title" />
     <p class="font-bold text-gray-500 m-4 truncate">{{ product.title }}</p>
     <NuxtLink :to="`/products/${product.id}`">
       <p class="btn my-4">View Details</p>
@@ -12,4 +12,10 @@
 const { product } = defineProps(["product"]);
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.thumb {
+  max-height: 120px;
+  max-width: 70%;
+  margin: 0 auto;
+}
+</style>

@@ -1,12 +1,6 @@
 <template>
   <div>
-    <p>Product details for {{ id }}</p>
-    <p>
-      {{ product.title }}
-    </p>
-    <p>{{ product.price }}</p>
-    <p>{{ product.description }}</p>
-    <p>{{ product.id }}</p>
+    <ProductDetail :product="product" />
   </div>
 </template>
 
@@ -17,6 +11,14 @@ const url = `https://fakestoreapi.com/products/${id}`;
 const { data: product } = await useFetch(url, {
   key: id,
 });
+
+if (!product.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Product not found",
+    fatal: true,
+  });
+}
 
 definePageMeta({
   layout: "products",
